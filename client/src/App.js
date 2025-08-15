@@ -91,9 +91,12 @@ function App() {
   const [dashboardStats, setDashboardStats] = useState({});
   const [isConnected, setIsConnected] = useState(false);
 
+  // Railway backend URL
+  const RAILWAY_URL = "https://indian-monitor-production.up.railway.app";
+
   useEffect(() => {
-    // Initialize socket connection
-    const newSocket = io('http://localhost:5000');
+    // Initialize socket connection with Railway backend
+    const newSocket = io(RAILWAY_URL);
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
@@ -150,13 +153,13 @@ function App() {
     fetchDashboardStats();
 
     return () => {
-      newSocket.close();
+      newSocket.disconnect();
     };
-  }, []);
+  }, [RAILWAY_URL]);
 
   const fetchDashboardStats = async () => {
     try {
-      const response = await fetch('/api/dashboard/stats');
+      const response = await fetch(`${RAILWAY_URL}/api/dashboard-stats`);
       const stats = await response.json();
       setDashboardStats(stats);
     } catch (error) {
