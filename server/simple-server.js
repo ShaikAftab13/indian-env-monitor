@@ -8,14 +8,24 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001", 
+      "https://*.netlify.app",
+      "https://indian-env-monitor.netlify.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:3000"
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://*.netlify.app", 
+    "https://indian-env-monitor.netlify.app"
+  ]
 }));
 app.use(express.json());
 
