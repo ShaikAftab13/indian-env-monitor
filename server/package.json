@@ -1,0 +1,23 @@
+{
+  "name": "indian-env-monitor-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Indian Environmental Monitoring System",
+  "main": "simple-server.js",
+  "scripts": {
+    "start": "node simple-server.js",
+    "dev": "nodemon simple-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "compression": "^1.7.4"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "keywords": ["environmental", "monitoring", "india", "iot", "sensors"],
+  "author": "Sara Shaik",
+  "license": "MIT"
+}

@@ -1,0 +1,31 @@
+[build]
+  base = "client"
+  publish = "client/build"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm start"
+  port = 3000
+  publish = "client/build"
+
+[context.production.environment]
+  REACT_APP_API_URL = "https://indian-env-monitor-api.herokuapp.com"
+  REACT_APP_SOCKET_URL = "https://indian-env-monitor-api.herokuapp.com"
+
+[context.deploy-preview.environment]
+  REACT_APP_API_URL = "http://localhost:5000"
+  REACT_APP_SOCKET_URL = "http://localhost:5000"
