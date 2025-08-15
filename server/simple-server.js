@@ -385,6 +385,24 @@ io.on('connection', (socket) => {
 });
 
 // API Routes
+// Root route - Homepage
+app.get('/', (req, res) => {
+  res.json({
+    message: '🇮🇳 Indian Environmental Monitoring System API',
+    status: 'Running',
+    version: '1.0.0',
+    sensors: sensors.length,
+    endpoints: {
+      health: '/api/health',
+      sensors: '/api/sensors',
+      latestReadings: '/api/latest-readings',
+      alerts: '/api/alerts',
+      dashboardStats: '/api/dashboard-stats'
+    },
+    description: 'Real-time environmental monitoring across Indian industrial zones'
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
